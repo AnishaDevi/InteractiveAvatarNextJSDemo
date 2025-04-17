@@ -20,7 +20,7 @@ import {
   Chip,
   Tabs,
   Tab,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
 import { useMemoizedFn, usePrevious } from "ahooks";
 
@@ -249,6 +249,7 @@ export default function InteractiveAvatar() {
                   value={avatarId}
                   onChange={(e) => setAvatarId(e.target.value)}
                 />
+                <div className="grid gap-4">
                 <Select
                   placeholder="Or select one from these example avatars"
                   size="md"
@@ -264,9 +265,12 @@ export default function InteractiveAvatar() {
                       {avatar.name}
                     </SelectItem>
                   ))}
+        
+                  
                 </Select>
+                </div>
+                <div className="grid gap-4">
                 <Select
-                  label="Select language"
                   placeholder="Select language"
                   className="max-w-xs"
                   selectedKeys={[language]}
@@ -278,6 +282,7 @@ export default function InteractiveAvatar() {
                     <SelectItem key={lang.key}>{lang.label}</SelectItem>
                   ))}
                 </Select>
+                </div>
               </div>
               <Button
                 className="bg-gradient-to-tr from-indigo-500 to-indigo-300 w-full text-white"
@@ -300,20 +305,38 @@ export default function InteractiveAvatar() {
             onSelectionChange={(v) => {
               handleChangeChatMode(v);
             }}
+            
           >
-            <Tab key="text_mode" title="Text mode" />
-            <Tab key="voice_mode" title="Voice mode" />
+            <Tab
+                key="text_mode"
+                title="Text mode"
+                className={`px-4 py-6 text-sm font-semibold transition text-white ${
+                  chatMode === "text_mode"
+                    ? "bg-indigo-500 text-white rounded-md"
+                    : "bg-transparent"
+                }`}
+            />
+             <Tab
+                key="voice_mode"
+                title="Voice mode"
+                className={`px-4 py-6 text-sm font-semibold transition text-white ${
+                  chatMode === "voice_mode"
+                    ? "bg-indigo-500 text-white rounded-md"
+                    : "bg-transparent"
+                }`}
+            />
           </Tabs>
           {chatMode === "text_mode" ? (
             <div className="w-full flex relative">
               <InteractiveAvatarTextInput
                 disabled={!stream}
                 input={text}
-                label="Chat"
+                label=""
                 loading={isLoadingRepeat}
-                placeholder="Type something for the avatar to respond"
+                placeholder={!text? "Type something for the avatar to respond": ""}
                 setInput={setText}
                 onSubmit={handleSpeak}
+                
               />
               {text && (
                 <Chip className="absolute right-16 top-3">Listening</Chip>

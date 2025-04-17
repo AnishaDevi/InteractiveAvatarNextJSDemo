@@ -1,4 +1,4 @@
-import { Input, Spinner, Tooltip } from "@nextui-org/react";
+import { Input, Spinner, Tooltip } from "@heroui/react";
 import { Airplane, ArrowRight, PaperPlaneRight } from "@phosphor-icons/react";
 import clsx from "clsx";
 

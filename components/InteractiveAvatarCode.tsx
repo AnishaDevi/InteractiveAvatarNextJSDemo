@@ -1,6 +1,9 @@
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody } from "@heroui/react";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import ReactCodeMirror from "@uiw/react-codemirror";
+import TranscriptionPanel from "@/components/TranscriptionPanel";
+
+
 
 export default function InteractiveAvatarCode() {
   return (
